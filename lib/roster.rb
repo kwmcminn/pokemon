@@ -1,4 +1,4 @@
 class Roster < ActiveRecord::Base
-has_many :pokemons
-has_many :trainers
+  belongs_to :pokemon
+  belongs_to :trainer
 end

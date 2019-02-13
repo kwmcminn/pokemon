@@ -1,4 +1,6 @@
 require_relative '../config/environment'
 
-
-welcome
+# welcome
+# choose_pokemon
+binding.pry
+0
