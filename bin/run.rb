@@ -3,9 +3,7 @@ require_relative '../config/environment'
 game = Game.new
 # game.welcome
 # game.choose_pokemon
-# #
-# game.trainer.roster
-# game.trainer.catch
-game.main_menu
+# game.main_menu
+game.pokedex_menu
 
 0

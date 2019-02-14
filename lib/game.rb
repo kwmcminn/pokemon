@@ -39,11 +39,14 @@ class Game
   end
 
   def main_menu
+    puts "---------------------------------"
     puts "Main Menu"
     sleep(1.5)
     puts "...What would you like to do?"
     sleep(2)
     menu_items
+    user_choice = gets.chomp.to_i
+    action_launcher(user_choice)
   end
 
   def menu_items
@@ -56,4 +59,65 @@ class Game
     puts "4. Release Pokémon"
   end
 
+  def action_launcher(user_choice)
+    if user_choice == 1
+      @trainer.catch
+      main_menu
+    elsif user_choice == 2
+      @trainer.roster
+      main_menu
+    elsif user_choice == 3
+      self.pokedex_menu
+      main_menu
+    elsif user_choice == 4
+      @trainer.release
+      main_menu
+    else
+      puts "Please select a valid option"
+      menu_items
+    end
+  end
+
+  def pokedex_menu
+    puts "<<<<<<<<<<<<<<"
+    puts " Pokedex Menu"
+    puts ">>>>>>>>>>>>>>"
+    puts "What would you like to know?"
+    puts "1. Search by Pokémon name"
+    puts "2. Search by Pokémon type"
+    choice = gets.chomp.to_i
+    if choice == 1
+      search_pokemon_by_name
+    end
+  end
+
+  def search_pokemon_by_name
+    puts "Please enter the name of a Pokémon or type 'Exit' to go back..."
+    pokemon_name = gets.chomp.downcase
+    chosen_pokemon = Pokemon.all.find{|pokemon| pokemon.name == pokemon_name}
+
+    if chosen_pokemon
+      #stats
+            if chosen_pokemon.type2
+            puts "Name: #{chosen_pokemon.name.capitalize}"
+            puts "Types: #{chosen_pokemon.type2.capitalize}/#{chosen_pokemon.type1.capitalize}"
+            puts "HP: #{chosen_pokemon.hp}"
+            puts "Weight: #{chosen_pokemon.weight}"
+            puts "Height: #{chosen_pokemon.height}"
+            else
+            puts "Name: #{chosen_pokemon.name.capitalize}"
+            puts "Type: #{chosen_pokemon.type1.capitalize}"
+            puts "HP: #{chosen_pokemon.hp}"
+            puts "Weight: #{chosen_pokemon.weight}"
+            puts "Height: #{chosen_pokemon.height}"
+          end
+    elsif pokemon_name == "e" || "exit"
+        self.pokedex_menu
+    else
+      sleep(2)
+      puts "Hmmm...Couldn't find a pokémon named '#{pokemon_name.capitalize}'. Please try again"
+      sleep(1.5)
+      search_pokemon_by_name
+    end
+  end
 end
