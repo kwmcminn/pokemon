@@ -4,7 +4,7 @@ class Game
   attr_reader :trainer
 
   def welcome
-    puts "Welcome to the World of Pokemon!"
+    puts "Welcome to the World of Pokémon!"
     # sleep(3)
     puts "Whoops, I apologize, but I can't recall your name"
     # sleep(4)
@@ -17,7 +17,7 @@ class Game
   end
 
   def choose_pokemon
-    puts "Choose your starter Pokemon!"
+    puts "Choose your starter Pokémon!"
     puts "1. Charmander"
     puts "2. Bulbasaur"
     puts "3. Squirtle"
@@ -37,4 +37,13 @@ class Game
       choose_pokemon
     end
   end
+
+  def main_menu
+    puts "Main Menu"
+    puts "...What would you like to do?"
+    sleep(.5)
+    puts "1. Catch Pokemon!"
+    puts "2. Check Your PokéSquad"
+    puts "3. Squirtle"
+
 end

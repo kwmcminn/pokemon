@@ -45,8 +45,6 @@ class Trainer < ActiveRecord::Base
 
    def roster
      my_pokemon.each{|x| puts x.pokemon.name.capitalize}
-
-
    end
 
    # pokemon = Pokemons.find_by name: pokemon.to_s.downcase
