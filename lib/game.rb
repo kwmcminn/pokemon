@@ -94,30 +94,36 @@ class Game
   def search_pokemon_by_name
     puts "Please enter the name of a Pokémon or type 'Exit' to go back..."
     pokemon_name = gets.chomp.downcase
-    chosen_pokemon = Pokemon.all.find{|pokemon| pokemon.name == pokemon_name}
-
-    if chosen_pokemon
-      #stats
-            if chosen_pokemon.type2
-            puts "Name: #{chosen_pokemon.name.capitalize}"
-            puts "Types: #{chosen_pokemon.type2.capitalize}/#{chosen_pokemon.type1.capitalize}"
-            puts "HP: #{chosen_pokemon.hp}"
-            puts "Weight: #{chosen_pokemon.weight}"
-            puts "Height: #{chosen_pokemon.height}"
-            else
-            puts "Name: #{chosen_pokemon.name.capitalize}"
-            puts "Type: #{chosen_pokemon.type1.capitalize}"
-            puts "HP: #{chosen_pokemon.hp}"
-            puts "Weight: #{chosen_pokemon.weight}"
-            puts "Height: #{chosen_pokemon.height}"
-          end
-    elsif pokemon_name == "e" || "exit"
-        self.pokedex_menu
-    else
-      sleep(2)
-      puts "Hmmm...Couldn't find a pokémon named '#{pokemon_name.capitalize}'. Please try again"
-      sleep(1.5)
-      search_pokemon_by_name
-    end
+    poke_search(pokemon_name)
   end
+
+  def pokemon_stats(chosen_pokemon)
+    puts "Name: #{chosen_pokemon.name.capitalize}"
+    if chosen_pokemon.type2
+      puts "Types: #{chosen_pokemon.type2.capitalize}/#{chosen_pokemon.type1.capitalize}"
+    else
+      puts "Type: #{chosen_pokemon.type1.capitalize}"
+    end
+    puts "HP: #{chosen_pokemon.hp}"
+    puts "Weight: #{chosen_pokemon.weight}"
+    puts "Height: #{chosen_pokemon.height}"
+    search_pokemon_by_name
+  end
+
+
+
+  def poke_search(pokemon_name)
+    chosen_pokemon = Pokemon.all.find{|pokemon| pokemon.name == pokemon_name}
+    if chosen_pokemon
+          pokemon_stats(chosen_pokemon)        
+  elsif pokemon_name == "e" || "exit"
+      sleep(1)
+      self.pokedex_menu
+  else
+    sleep(2)
+    puts "Hmmm...Couldn't find a pokémon named '#{pokemon_name.capitalize}'. Please try again"
+    sleep(1.5)
+    search_pokemon_by_name
+  end
+end
 end
