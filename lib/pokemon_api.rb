@@ -1,6 +1,6 @@
-# require 'rest-client'
-# require 'json'
-# require 'pry'
+require 'rest-client'
+require 'json'
+require 'pry'
 require_relative '../config/environment'
 
 def create_new_pokemon
@@ -19,12 +19,22 @@ def create_new_pokemon
         height = attribute_hash["height"]
         weight = attribute_hash["weight"]
         name = attribute_hash["name"]
-        Pokemon.create(name: name, weight: weight, height: height)
+        type1 = attribute_hash["types"][0]["type"]["name"]
+        if attribute_hash["types"][1]
+            type2 = attribute_hash["types"][1]["type"]["name"]
+        else
+            type2 = nil
+          end
+        hp = attribute_hash["stats"][5]["base_stat"]
+        signature_move = attribute_hash["moves"][0]["move"]["name"]
+
+        Pokemon.create(name: name, weight: weight, height: height, type1: type1, type2: type2, hp: hp, signature_move: signature_move)
 
         end
       end
     end
   end
+
 
 
   #  poke_hash = response_hash["results"].find { |data| data["films"]}

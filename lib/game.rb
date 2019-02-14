@@ -40,10 +40,20 @@ class Game
 
   def main_menu
     puts "Main Menu"
+    sleep(1.5)
     puts "...What would you like to do?"
-    sleep(.5)
-    puts "1. Catch Pokemon!"
+    sleep(2)
+    menu_items
+  end
+
+  def menu_items
+    puts "1. Catch Pokémon!"
+    sleep(1)
     puts "2. Check Your PokéSquad"
-    puts "3. Squirtle"
+    sleep(1)
+    puts "3. Check the Pokédex"
+    sleep(1)
+    puts "4. Release Pokémon"
+  end
 
 end
