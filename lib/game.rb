@@ -7,6 +7,7 @@ class Game
     animation2
     sleep(2)
     animation
+    sleep(2)
     puts "Whoops, I apologize, but I can't recall your name"
     sleep(2)
     puts "Can you jog my memory, please?"
@@ -249,6 +250,11 @@ end
     catch_attempts = 0
     escape_chance = rand(1..5)
     rand_number = rand(1..3)
+    puts
+    pokeball
+    sleep (1)
+    puts
+    puts
 
     puts "A wild #{rand_pokemon_name} has appeared!"
         while catch_attempts < escape_chance
@@ -325,5 +331,45 @@ end
       puts"          \\_.-'       |__|    `-._ |              '-.|     '-.| |   |  "
       puts"           `'                                                    "
   end
+
+  def pokeball
+puts"                     *************                       "
+sleep(0.1)
+puts"                  *********************                  "
+sleep(0.1)
+puts"               ***************************     "
+sleep(0.1)
+puts"            *********************************  "
+sleep(0.1)
+puts"          ****************___******************  "
+sleep(0.1)
+puts"         ****************/ _ \\******************     "
+sleep(0.1)
+puts"        ----------------/ / \\ \\------------------    "
+sleep(0.1)
+puts"       -----------------\\ \\_/ /-------------------   "
+sleep(0.1)
+puts"       ------------------\\___/--------------------  "
+sleep(0.1)
+puts"       *******************************************  "
+sleep(0.1)
+puts"       *******************************************   "
+sleep(0.1)
+puts"       *******************************************   "
+sleep(0.1)
+puts"        *****************************************   "
+sleep(0.1)
+puts"         ***************************************   "
+sleep(0.1)
+puts"          *************************************      "
+sleep(0.1)
+puts"            *********************************      "
+sleep(0.1)
+puts"              *****************************      "
+sleep(0.1)
+puts"                *************************      "
+sleep(0.1)
+puts"                   ******************      "
+end
 
 end #end of game class
