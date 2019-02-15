@@ -60,7 +60,7 @@ class Game
     puts ">>>>>>>>>>>>>>>>>>>>>>>>>>"
     sleep(0.5)
     puts "       Main Menu         "
-    puts "<<<<<<<<<<<<<<<<<<<<<<<<<"
+    puts "<<<<<<<<<<<<<<<<<<<<<<<<<<"
     sleep(0.5)
     puts "...What would you like to do, #{@trainer.name.capitalize}?"
     puts
@@ -82,6 +82,7 @@ class Game
     sleep(0.5)
     puts "5. Exit Game"
     sleep(0.5)
+    puts ""
     print "Where would you like to go? Enter 1-5: "
   end
 
@@ -119,12 +120,16 @@ class Game
     sleep(0.5)
     puts ">>>>>>>>>>>>>>>>>>>>>>>>>>"
     puts "      Pokedex Menu        "
-    puts "<<<<<<<<<<<<<<<<<<<<<<<<<"
-    puts "What would you like to know?"
+    puts "<<<<<<<<<<<<<<<<<<<<<<<<<<"
     puts "1. Search by Pokémon name"
+    sleep(0.5)
     puts "2. Search by Pokémon type"
+    sleep(0.5)
     puts "3. List all Pokémon"
+    sleep(0.5)
     puts "4. Exit to Main Menu"
+    puts ""
+    print "What would you like to know? Enter 1-4: "
     choice = gets.chomp.to_i
     if choice == 1
       search_pokemon_by_name
@@ -262,7 +267,7 @@ end
 
     puts "A wild #{rand_pokemon_name} has appeared!"
         while catch_attempts < escape_chance
-          sleep(3)
+          sleep(1.5)
           puts "Enter 1, 2, or 3 to try and catch #{rand_pokemon_name}!!!"
           choice = gets.chomp.to_i
           if choice == rand_number
@@ -314,7 +319,7 @@ end
   end
 
   def animation
-      puts "                             `;-.          ___,     "
+      puts "                         `;-.          ___,     "
       sleep(0.2)
       puts "                           `.`\\_...._/`.-'`         "
       sleep(0.2)
@@ -342,9 +347,9 @@ end
   end
 
   def animation2
-      puts"    ,'\\                                                                "
-      puts"_.----.        ____         ,'  _\\   ___    ___     ____               "
-      puts" _,-'       `.     |    |  /`.   \\,-'    |    \\  /   |   |    \\  |`.    "
+      puts"                                     ,'\\                                      "
+      puts"       _.----.        ____         ,'  _\\   ___    ___     ____               "
+      puts"  _,-'       `.     |    |  /`.   \\,-'    |    \\  /   |   |    \\  |`.    "
       puts"  \\      __    \\    '-.  | /   `.  ___    |    \\/    |   '-.   \\ |  |  "
       puts"   \\.    \\ \\   |  __  |  |/    ,','_  `.  |          | __  |    \\|  |  "
       puts"     \\    \\/   /,' _`.|      ,' / / / /   |          ,' _`.|     |  |  "
