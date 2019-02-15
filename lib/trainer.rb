@@ -12,31 +12,15 @@ class Trainer < ActiveRecord::Base
 
    def add_pokemon_to_roster(pokemon)
      Roster.create(trainer_id: self.id, pokemon_id: pokemon.id)
+     sleep(2)
      puts "Added #{pokemon.name.capitalize} to your roster."
    end
 
-   def catch
-     rand_pokemon = Pokemon.all.sample
-     rand_pokemon_name = rand_pokemon.name.capitalize
-
-     rand_number = rand(1..3)
-     puts "A wild #{rand_pokemon_name} has appeared!"
-     sleep(3)
-     puts "Enter 1, 2, 3 to see if you catch #{rand_pokemon_name}!!!"
-     choice = gets.chomp.to_i
-     if choice == rand_number
-       puts "Success! You have caught #{rand_pokemon_name}!"
-       add_pokemon_to_roster(rand_pokemon)
-     else
-       puts "Oh no! #{rand_pokemon_name} has run away!"
-       sleep(3)
-       puts "Would you like to try again? (Yes/No)"
-       if gets.chomp.downcase[0] == "y"
-         catch
-       else
-         puts "Ok! Better luck next time!"
-       end
-     end
+   def remove_pokemon_from_roster(pokemon)
+     roster = Roster.find_by(trainer_id: self.id, pokemon_id: pokemon.id)
+     Roster.delete(roster.id)
+     sleep(2)
+     puts "Removed #{pokemon.name.capitalize} from your roster."
    end
 
    def my_pokemon
