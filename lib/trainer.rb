@@ -34,8 +34,13 @@ class Trainer < ActiveRecord::Base
    end
 
    def roster
+     if my_pokemon == []
+       puts "You currently have no Pokémon. Go out and catch one!"
+       sleep(2)
+     else
      my_pokemon.each_with_index{|x, index| puts "#{index + 1}. " + x.pokemon.name.capitalize}
    end
+ end
 
    # def pokedex_menu
    #

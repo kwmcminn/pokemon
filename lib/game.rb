@@ -8,17 +8,18 @@ class Game
     sleep(2)
     animation
     sleep(2)
-    puts "Whoops, I apologize, but I can't recall your name"
-    sleep(2)
-    puts "Can you jog my memory, please?"
+    puts "Whoops, I apologize, but I can't recall your name...Can you jog my memory, please?"
     name = gets.chomp.downcase
-    puts "AH! That's right. Welcome #{name.capitalize}."
+    sleep(2)
     puts "And your age...?"
     age = gets.chomp.to_i
+    sleep(1)
     @trainer = Trainer.find_or_create_by(name: name, age: age)
     if @trainer.starter?
       puts
       puts "So nice to see you again, #{name.capitalize}!"
+    else
+      puts "Nice to meet you, #{name.capitalize}!"
     end
   end
 
@@ -56,9 +57,10 @@ class Game
 
   def main_menu
     puts
-    puts "---------------------------------"
+    puts ">>>>>>>>>>>>>>>>>>>>>>>>>>"
     sleep(0.5)
-    puts "Main Menu"
+    puts "       Main Menu         "
+    puts "<<<<<<<<<<<<<<<<<<<<<<<<<"
     sleep(0.5)
     puts "...What would you like to do, #{@trainer.name.capitalize}?"
     puts
@@ -80,7 +82,6 @@ class Game
     sleep(0.5)
     puts "5. Exit Game"
     sleep(0.5)
-    puts "---------------------------------"
     print "Where would you like to go? Enter 1-5: "
   end
 
@@ -103,8 +104,8 @@ class Game
       main_menu
     elsif user_choice == 5
       sleep(0.5)
-    puts
-    abort("Thanks for playing!")
+    end_game
+    abort
 
     else
       puts "Please select a valid option"
@@ -113,9 +114,12 @@ class Game
   end
 
   def pokedex_menu
-    puts "<<<<<<<<<<<<<<"
-    puts " Pokedex Menu"
-    puts ">>>>>>>>>>>>>>"
+    puts ""
+    puts ""
+    sleep(0.5)
+    puts ">>>>>>>>>>>>>>>>>>>>>>>>>>"
+    puts "      Pokedex Menu        "
+    puts "<<<<<<<<<<<<<<<<<<<<<<<<<"
     puts "What would you like to know?"
     puts "1. Search by Pokémon name"
     puts "2. Search by Pokémon type"
@@ -180,7 +184,7 @@ end
   def list_all_pokemon
     pokemon_names = Pokemon.all.map {|pokemon| pokemon.name.capitalize}
     alphabetized = pokemon_names.sort
-    puts pokemon_names.join(", ")
+    puts alphabetized.join(", ")
     puts
     sleep(3)
     pokedex_menu
@@ -262,22 +266,42 @@ end
           puts "Enter 1, 2, or 3 to try and catch #{rand_pokemon_name}!!!"
           choice = gets.chomp.to_i
           if choice == rand_number
+            sleep(0.5)
+            puts "."
+            sleep(0.5)
+            puts "."
+            sleep(0.5)
+            puts "."
             puts "Success! You have caught #{rand_pokemon_name}!"
             @trainer.add_pokemon_to_roster(rand_pokemon)
             sleep(2)
             main_menu
           else
+            sleep(0.5)
+            puts "."
+            sleep(0.5)
+            puts "."
+            sleep(0.5)
+            puts "."
             puts "Uh oh! #{rand_pokemon_name} escaped the pokéball!"
             sleep(2)
             catch_attempts += 1
+            rand_number = rand(1..3)
           end
         end
+    sleep(0.5)
+    puts "."
+    sleep(0.5)
+    puts "."
+    sleep(0.5)
+    puts "."
     puts "Oh no! #{rand_pokemon_name} has run away!"
     sleep(2)
     puts "Would you like to try again? (Yes/No)"
     if gets.chomp.downcase[0] == "y"
       catch
     else
+      sleep(1)
       puts "Ok! Better luck next time!"
       main_menu
     end
@@ -372,4 +396,24 @@ sleep(0.1)
 puts"                   ******************      "
 end
 
+def end_game
+
+puts"     _______ _                 _           __
+    |__   __| |               | |         / _|
+      | |  | |__   __ _ _ __ | | _____  | |_ ___  _ __
+      | |  | '_ \\ / _` | '_ \\| |/ / __| |  _/ _ \\| '__|
+      | |  | | | | (_| | | | |   <\\__ \\ | || (_) | |
+      |_|  |_| |_|\\__,_|_| |_|_|\\_\\___/ |_| \\___/|_|
+
+
+     _____  _             _             _
+    |  __ \\| |           (_)           | |
+    | |__) | | __ _ _   _ _ _ __   __ _| |
+    |  ___/| |/ _` | | | | | '_ \\ / _` | |
+    | |    | | (_| | |_| | | | | | (_| |_|
+    |_|    |_|\\__,_|\\__, |_|_| |_|\\__, (_)
+                    __/ |         __/ |
+                   |___/         |___/"
+
+end
 end #end of game class

@@ -9,6 +9,3 @@ tmp
 *.iml
 *.log
 *.swp
-
-
-db/schema.rb
