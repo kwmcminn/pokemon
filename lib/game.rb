@@ -4,23 +4,12 @@ class Game
   attr_reader :trainer
 
   def welcome
-<<<<<<< HEAD
-<<<<<<< HEAD
-    puts "Welcome to the World of....."
-=======
     puts "Welcome to the World of..."
->>>>>>> 28822601cbfdfa3d0364098c80f556e9a88221ae
     sleep(2)
     animation2
     sleep(2)
     animation
-<<<<<<< HEAD
-=======
-    puts "Welcome to the World of Pokémon!"
->>>>>>> bb7cf20ae3d2bb081c55da15c5e538c29ec4fd45
     sleep(2)
-=======
->>>>>>> 28822601cbfdfa3d0364098c80f556e9a88221ae
     puts "Whoops, I apologize, but I can't recall your name"
     sleep(2)
     puts "Can you jog my memory, please?"
@@ -93,11 +82,7 @@ class Game
     puts "5. Exit Game"
     sleep(0.5)
     puts "---------------------------------"
-<<<<<<< HEAD
-    print "Enter the number of the action you want to take here: "
-=======
     print "Where would you like to go? Enter 1-5: "
->>>>>>> 28822601cbfdfa3d0364098c80f556e9a88221ae
   end
 
   def action_launcher(user_choice)
@@ -266,6 +251,11 @@ end
     catch_attempts = 0
     escape_chance = rand(1..5)
     rand_number = rand(1..3)
+    puts
+    pokeball
+    sleep (1)
+    puts
+    puts
 
     puts "A wild #{rand_pokemon_name} has appeared!"
         while catch_attempts < escape_chance
@@ -294,62 +284,12 @@ end
     end
   end
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-  def animation
-puts "                             `;-.          ___,     "
-sleep(0.2)
-puts "                           `.`\\_...._/`.-'`         "
-sleep(0.2)
-puts "                            \\        /      ,      "
-sleep(0.2)
-puts "                             /()   () \\    .' `-._ "
-sleep(0.2)
-puts "                            |)  .    ()\\  /   _.'  "
-sleep(0.2)
-puts "                            \\  -'-     ,; '. <     "
-sleep(0.2)
-puts "                             ;.__     ,;|   > \\    "
-sleep(0.2)
-puts "                            / ,    / ,  |.-'.-'     "
-sleep(0.2)
-puts "                           (_/    (_/ ,;|.<`        "
-sleep(0.2)
-puts "                             \\    ,     ;-`        "
-sleep(0.2)
-puts "                              >   \\    /           "
-sleep(0.2)
-puts "                             (_,-'`> .'             "
-sleep(0.2)
-puts "                                  (_,'              "
-  end
-
-  def animation2
-puts"    ,'\\                                                                "
-puts"_.----.        ____         ,'  _\\   ___    ___     ____               "
-puts" _,-'       `.     |    |  /`.   \\,-'    |    \\  /   |   |    \\  |`.    "
-puts"  \\      __    \\    '-.  | /   `.  ___    |    \\/    |   '-.   \\ |  |  "
-puts"   \\.    \\ \\   |  __  |  |/    ,','_  `.  |          | __  |    \\|  |  "
-puts"     \\    \\/   /,' _`.|      ,' / / / /   |          ,' _`.|     |  |  "
-puts"      \\     ,-'/  /   \\    ,'   | \\/ / ,`.|         /  /   \\  |     |  "
-puts"       \\    \\ |   \\_/  |   `-.  \\    `'  /|  |    ||   \\_/  | |\\    |  "
-puts"        \\    \\ \\      /       `-.`.___,-' |  |\\  /| \\      /  | |   |  "
-puts"         \\    \\ `.__,'|  |`-._    `|      |__| \\/ |  `.__,'|  | |   |  "
-puts"          \\_.-'       |__|    `-._ |              '-.|     '-.| |   |  "
-puts"           `'                                                    "
-  end
-=======
-=======
->>>>>>> 28822601cbfdfa3d0364098c80f556e9a88221ae
   def exit_menu(user_input)
     if user_input == "e" || user_input == "exit"
       return true
     end
   end
 
-<<<<<<< HEAD
->>>>>>> bb7cf20ae3d2bb081c55da15c5e538c29ec4fd45
-=======
   def animation
       puts "                             `;-.          ___,     "
       sleep(0.2)
@@ -393,5 +333,44 @@ puts"           `'                                                    "
       puts"           `'                                                    "
   end
 
->>>>>>> 28822601cbfdfa3d0364098c80f556e9a88221ae
+  def pokeball
+puts"                     *************                       "
+sleep(0.1)
+puts"                  *********************                  "
+sleep(0.1)
+puts"               ***************************     "
+sleep(0.1)
+puts"            *********************************  "
+sleep(0.1)
+puts"          ****************___******************  "
+sleep(0.1)
+puts"         ****************/ _ \\******************     "
+sleep(0.1)
+puts"        ----------------/ / \\ \\------------------    "
+sleep(0.1)
+puts"       -----------------\\ \\_/ /-------------------   "
+sleep(0.1)
+puts"       ------------------\\___/--------------------  "
+sleep(0.1)
+puts"       *******************************************  "
+sleep(0.1)
+puts"       *******************************************   "
+sleep(0.1)
+puts"       *******************************************   "
+sleep(0.1)
+puts"        *****************************************   "
+sleep(0.1)
+puts"         ***************************************   "
+sleep(0.1)
+puts"          *************************************      "
+sleep(0.1)
+puts"            *********************************      "
+sleep(0.1)
+puts"              *****************************      "
+sleep(0.1)
+puts"                *************************      "
+sleep(0.1)
+puts"                   ******************      "
+end
+
 end #end of game class
