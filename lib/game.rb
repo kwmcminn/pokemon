@@ -4,8 +4,11 @@ class Game
   attr_reader :trainer
 
   def welcome
-    puts "Welcome to the World of Pokémon!"
+    puts "Welcome to the World of..."
     sleep(2)
+    animation2
+    sleep(2)
+    animation
     puts "Whoops, I apologize, but I can't recall your name"
     sleep(2)
     puts "Can you jog my memory, please?"
@@ -78,7 +81,7 @@ class Game
     puts "5. Exit Game"
     sleep(0.5)
     puts "---------------------------------"
-    print "Enter the number of the action you want to take here: "
+    print "Where would you like to go? Enter 1-5: "
   end
 
   def action_launcher(user_choice)
@@ -279,6 +282,49 @@ end
     if user_input == "e" || user_input == "exit"
       return true
     end
+  end
+
+  def animation
+      puts "                             `;-.          ___,     "
+      sleep(0.2)
+      puts "                           `.`\\_...._/`.-'`         "
+      sleep(0.2)
+      puts "                            \\        /      ,      "
+      sleep(0.2)
+      puts "                             /()   () \\    .' `-._ "
+      sleep(0.2)
+      puts "                            |)  .    ()\\  /   _.'  "
+      sleep(0.2)
+      puts "                            \\  -'-     ,; '. <     "
+      sleep(0.2)
+      puts "                             ;.__     ,;|   > \\    "
+      sleep(0.2)
+      puts "                            / ,    / ,  |.-'.-'     "
+      sleep(0.2)
+      puts "                           (_/    (_/ ,;|.<`        "
+      sleep(0.2)
+      puts "                             \\    ,     ;-`        "
+      sleep(0.2)
+      puts "                              >   \\    /           "
+      sleep(0.2)
+      puts "                             (_,-'`> .'             "
+      sleep(0.2)
+      puts "                                  (_,'              "
+  end
+
+  def animation2
+      puts"    ,'\\                                                                "
+      puts"_.----.        ____         ,'  _\\   ___    ___     ____               "
+      puts" _,-'       `.     |    |  /`.   \\,-'    |    \\  /   |   |    \\  |`.    "
+      puts"  \\      __    \\    '-.  | /   `.  ___    |    \\/    |   '-.   \\ |  |  "
+      puts"   \\.    \\ \\   |  __  |  |/    ,','_  `.  |          | __  |    \\|  |  "
+      puts"     \\    \\/   /,' _`.|      ,' / / / /   |          ,' _`.|     |  |  "
+      puts"      \\     ,-'/  /   \\    ,'   | \\/ / ,`.|         /  /   \\  |     |  "
+      puts"       \\    \\ |   \\_/  |   `-.  \\    `'  /|  |    ||   \\_/  | |\\    |  "
+      puts"        \\    \\ \\      /       `-.`.___,-' |  |\\  /| \\      /  | |   |  "
+      puts"         \\    \\ `.__,'|  |`-._    `|      |__| \\/ |  `.__,'|  | |   |  "
+      puts"          \\_.-'       |__|    `-._ |              '-.|     '-.| |   |  "
+      puts"           `'                                                    "
   end
 
 end #end of game class
