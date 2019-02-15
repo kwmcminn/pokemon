@@ -4,10 +4,14 @@ class Game
   attr_reader :trainer
 
   def welcome
-    puts "Welcome to the World of Pokémon!"
-    # sleep(3)
+    puts "Welcome to the World of....."
+    sleep(2)
+    animation2
+    sleep(2)
+    animation
+    sleep(2)
     puts "Whoops, I apologize, but I can't recall your name"
-    # sleep(4)
+    sleep(2)
     puts "Can you jog my memory, please?"
     name = gets.chomp.downcase
     puts "AH! That's right. Welcome #{name.capitalize}."
@@ -235,5 +239,48 @@ end
       puts "Ok! Better luck next time!"
       main_menu
     end
+  end
+
+  def animation
+puts "                             `;-.          ___,     "
+sleep(0.2)
+puts "                           `.`\\_...._/`.-'`         "
+sleep(0.2)
+puts "                            \\        /      ,      "
+sleep(0.2)
+puts "                             /()   () \\    .' `-._ "
+sleep(0.2)
+puts "                            |)  .    ()\\  /   _.'  "
+sleep(0.2)
+puts "                            \\  -'-     ,; '. <     "
+sleep(0.2)
+puts "                             ;.__     ,;|   > \\    "
+sleep(0.2)
+puts "                            / ,    / ,  |.-'.-'     "
+sleep(0.2)
+puts "                           (_/    (_/ ,;|.<`        "
+sleep(0.2)
+puts "                             \\    ,     ;-`        "
+sleep(0.2)
+puts "                              >   \\    /           "
+sleep(0.2)
+puts "                             (_,-'`> .'             "
+sleep(0.2)
+puts "                                  (_,'              "
+  end
+
+  def animation2
+puts"    ,'\\                                                                "
+puts"_.----.        ____         ,'  _\\   ___    ___     ____               "
+puts" _,-'       `.     |    |  /`.   \\,-'    |    \\  /   |   |    \\  |`.    "
+puts"  \\      __    \\    '-.  | /   `.  ___    |    \\/    |   '-.   \\ |  |  "
+puts"   \\.    \\ \\   |  __  |  |/    ,','_  `.  |          | __  |    \\|  |  "
+puts"     \\    \\/   /,' _`.|      ,' / / / /   |          ,' _`.|     |  |  "
+puts"      \\     ,-'/  /   \\    ,'   | \\/ / ,`.|         /  /   \\  |     |  "
+puts"       \\    \\ |   \\_/  |   `-.  \\    `'  /|  |    ||   \\_/  | |\\    |  "
+puts"        \\    \\ \\      /       `-.`.___,-' |  |\\  /| \\      /  | |   |  "
+puts"         \\    \\ `.__,'|  |`-._    `|      |__| \\/ |  `.__,'|  | |   |  "
+puts"          \\_.-'       |__|    `-._ |              '-.|     '-.| |   |  "
+puts"           `'                                                    "
   end
 end #end of game class
