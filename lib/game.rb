@@ -14,6 +14,10 @@ class Game
     puts "And your age...?"
     age = gets.chomp.to_i
     @trainer = Trainer.find_or_create_by(name: name, age: age)
+    if @trainer.starter?
+      puts
+      puts "So nice to see you again, #{name.capitalize}!"
+    end
   end
 
   def choose_pokemon
@@ -48,10 +52,14 @@ class Game
   end
 
   def main_menu
+    puts
     puts "---------------------------------"
+    sleep(0.5)
     puts "Main Menu"
+    sleep(0.5)
     puts "...What would you like to do, #{@trainer.name.capitalize}?"
-    sleep(2)
+    puts
+    sleep(1.5)
     menu_items
     user_choice = gets.chomp.to_i
     action_launcher(user_choice)
@@ -70,6 +78,7 @@ class Game
     puts "5. Exit Game"
     sleep(0.5)
     puts "---------------------------------"
+    print "Enter the number of the action you want to take here: "
   end
 
   def action_launcher(user_choice)
@@ -80,6 +89,7 @@ class Game
       puts
       puts "#{@trainer.name.capitalize}'s Squad:"
       puts
+      sleep(1)
       @trainer.roster
       main_menu
     elsif user_choice == 3
@@ -89,11 +99,13 @@ class Game
       self.release
       main_menu
     elsif user_choice == 5
+      sleep(0.5)
+    puts
     abort("Thanks for playing!")
 
     else
       puts "Please select a valid option"
-      menu_items
+      main_menu
     end
   end
 
@@ -187,8 +199,8 @@ end
           puts "#{i}. #{x.name.capitalize}"
           i += 1
         end
-        search_by_type
       end
+      search_by_type
     else
         puts "Sorry, don't recognize that type"
         sleep(1)
