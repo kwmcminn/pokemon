@@ -10,6 +10,12 @@ class Trainer < ActiveRecord::Base
  #   end
   # end
 
+  def update_starter
+    user = Trainer.find_by(id: self.id)
+    user.update(starter?: true)
+  end
+
+
    def add_pokemon_to_roster(pokemon)
      Roster.create(trainer_id: self.id, pokemon_id: pokemon.id)
      sleep(2)
@@ -28,7 +34,6 @@ class Trainer < ActiveRecord::Base
    end
 
    def roster
-     i = 1
      my_pokemon.each_with_index{|x, index| puts "#{index + 1}. " + x.pokemon.name.capitalize}
    end
 
