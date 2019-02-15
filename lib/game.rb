@@ -5,47 +5,61 @@ class Game
 
   def welcome
     puts "Welcome to the World of Pokémon!"
-    # sleep(3)
+    sleep(2)
     puts "Whoops, I apologize, but I can't recall your name"
-    # sleep(4)
+    sleep(2)
     puts "Can you jog my memory, please?"
     name = gets.chomp.downcase
     puts "AH! That's right. Welcome #{name.capitalize}."
     puts "And your age...?"
     age = gets.chomp.to_i
     @trainer = Trainer.find_or_create_by(name: name, age: age)
+    if @trainer.starter?
+      puts
+      puts "So nice to see you again, #{name.capitalize}!"
+    end
   end
 
   def choose_pokemon
-    puts "Choose your starter Pokémon!"
-    puts "1. Charmander"
-    puts "2. Bulbasaur"
-    puts "3. Squirtle"
-    starter = gets.chomp.to_i
-    if starter == 1
-      puts "Charmander! Great Choice!"
-      @trainer.add_pokemon_to_roster(Pokemon.all[3])
-      sleep(1)
-    elsif starter == 2
-      puts "Bulbasaur! Great Choice!"
-      @trainer.add_pokemon_to_roster(Pokemon.all[0])
-      sleep(1)
-    elsif starter == 3
-      puts "Squirtle! Great Choice!"
-      @trainer.add_pokemon_to_roster(Pokemon.all[6])
-      sleep(1)
-    else
-      puts "That's not a valid response! Please type 1, 2, or 3 to choose your Pokemon"
-      sleep(3)
-      choose_pokemon
+    if @trainer.starter? == false
+      #checks to see if a trainer has picked a starter previously
+      puts "Choose your starter Pokémon!"
+      puts "1. Charmander"
+      puts "2. Bulbasaur"
+      puts "3. Squirtle"
+      starter = gets.chomp.to_i
+      if starter == 1
+        puts "Charmander! Great Choice!"
+        @trainer.add_pokemon_to_roster(Pokemon.all[3])
+        sleep(1)
+        @trainer.update_starter
+      elsif starter == 2
+        puts "Bulbasaur! Great Choice!"
+        @trainer.add_pokemon_to_roster(Pokemon.all[0])
+        sleep(1)
+        @trainer.update_starter
+      elsif starter == 3
+        puts "Squirtle! Great Choice!"
+        @trainer.add_pokemon_to_roster(Pokemon.all[6])
+        sleep(1)
+        @trainer.update_starter
+      else
+        puts "That's not a valid response! Please type 1, 2, or 3 to choose your Pokemon"
+        sleep(3)
+        choose_pokemon
+      end
     end
   end
 
   def main_menu
+    puts
     puts "---------------------------------"
+    sleep(0.5)
     puts "Main Menu"
-    puts "...What would you like to do?"
-    sleep(2)
+    sleep(0.5)
+    puts "...What would you like to do, #{@trainer.name.capitalize}?"
+    puts
+    sleep(1.5)
     menu_items
     user_choice = gets.chomp.to_i
     action_launcher(user_choice)
@@ -60,7 +74,11 @@ class Game
     puts "3. Check the Pokédex"
     sleep(0.5)
     puts "4. Release Pokémon"
+    sleep(0.5)
+    puts "5. Exit Game"
+    sleep(0.5)
     puts "---------------------------------"
+    print "Enter the number of the action you want to take here: "
   end
 
   def action_launcher(user_choice)
@@ -68,6 +86,10 @@ class Game
       self.catch
       main_menu
     elsif user_choice == 2
+      puts
+      puts "#{@trainer.name.capitalize}'s Squad:"
+      puts
+      sleep(1)
       @trainer.roster
       main_menu
     elsif user_choice == 3
@@ -76,9 +98,14 @@ class Game
     elsif user_choice == 4
       self.release
       main_menu
+    elsif user_choice == 5
+      sleep(0.5)
+    puts
+    abort("Thanks for playing!")
+
     else
       puts "Please select a valid option"
-      menu_items
+      main_menu
     end
   end
 
@@ -104,7 +131,7 @@ class Game
   end
 
   def search_pokemon_by_name
-    puts "Please enter the name of a Pokémon or type 'Exit' to go back..."
+    puts "Please enter the name of a Pokémon, or type 'Exit' to go back."
     pokemon_name = gets.chomp.downcase
     poke_search(pokemon_name)
   end
@@ -133,13 +160,14 @@ class Game
     chosen_pokemon = Pokemon.all.find{|pokemon| pokemon.name == pokemon_name}
     if chosen_pokemon
           pokemon_stats(chosen_pokemon)
-  elsif pokemon_name == "e" || pokemon_name == "exit"
+  elsif exit_menu(pokemon_name)
+    #if they type exit, go back a menu
       sleep(1)
-      self.pokedex_menu
+      pokedex_menu
   else
     sleep(2)
     puts
-    puts "Hmmm...Couldn't find a pokémon named '#{pokemon_name.capitalize}'. Please try again"
+    puts "Hmmm... Couldn't find a pokémon named '#{pokemon_name.capitalize}'. Please try again"
     puts
     sleep(1.5)
     search_pokemon_by_name
@@ -149,25 +177,30 @@ end
   def list_all_pokemon
     pokemon_names = Pokemon.all.map {|pokemon| pokemon.name.capitalize}
     alphabetized = pokemon_names.sort
-    puts alphabetized.join(", ")
+    puts pokemon_names.join(", ")
     puts
     sleep(3)
     pokedex_menu
   end
 
   def search_by_type
-    puts "Please enter a Pokémon type:"
+    puts "Please enter a Pokémon type or 'Exit' to leave:"
     type = gets.chomp.downcase
     all_pokemon_type_c = Pokemon.all.map{|x| x.type1.capitalize}.uniq
     all_pokemon_type = Pokemon.all.map{|x| x.type1}.uniq
     i = 1
-    if all_pokemon_type.include?(type)
+    puts "Here are all of the pokemon that match the type: #{type.capitalize}"
+    if exit_menu(type)
+      #if they type exit, go back a menu
+      pokedex_menu
+    elsif all_pokemon_type.include?(type)
       Pokemon.all.each do |x|
         if x.type1 == type || x.type2 == type
           puts "#{i}. #{x.name.capitalize}"
           i += 1
         end
       end
+      search_by_type
     else
         puts "Sorry, don't recognize that type"
         sleep(1)
@@ -183,6 +216,7 @@ end
     end
 
   def release
+    #Removes chosen Pokemon from Roster.
       puts "Which Pokémon would you like to release?"
       puts
       puts "Your current roster:"
@@ -191,7 +225,8 @@ end
       puts "Please enter the name of the Pokémon you want to release or 'Exit' to leave: "
       poke_name = gets.chomp.downcase
       poke_object = Pokemon.all.find{|x| x.name == poke_name}
-      if poke_name == "e" || poke_name == "exit"
+      if exit_menu(poke_name)
+        #if they type exit, go back a menu
         sleep(1)
         main_menu
       elsif poke_object == nil
@@ -205,11 +240,14 @@ end
   end
 
   def catch
+    #Catch gameplay loop.
+
     rand_pokemon = Pokemon.all.sample
     rand_pokemon_name = rand_pokemon.name.capitalize
     catch_attempts = 0
     escape_chance = rand(1..5)
     rand_number = rand(1..3)
+
     puts "A wild #{rand_pokemon_name} has appeared!"
         while catch_attempts < escape_chance
           sleep(3)
@@ -227,7 +265,7 @@ end
           end
         end
     puts "Oh no! #{rand_pokemon_name} has run away!"
-    sleep(3)
+    sleep(2)
     puts "Would you like to try again? (Yes/No)"
     if gets.chomp.downcase[0] == "y"
       catch
@@ -236,4 +274,11 @@ end
       main_menu
     end
   end
+
+  def exit_menu(user_input)
+    if user_input == "e" || user_input == "exit"
+      return true
+    end
+  end
+
 end #end of game class
