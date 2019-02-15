@@ -38,6 +38,7 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
+    ruby-sox (0.0.3)
     sinatra (1.4.8)
       rack (~> 1.5)
       rack-protection (~> 1.4)
@@ -62,6 +63,7 @@ DEPENDENCIES
   pry
   require_all
   rest-client
+  ruby-sox (~> 0.0.3)
   sinatra-activerecord
   sqlite3
 

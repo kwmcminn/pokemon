@@ -6,3 +6,4 @@ gem "sqlite3"
 gem "pry"
 gem "require_all"
 gem 'rest-client'
+gem 'ruby-sox', '~> 0.0.3'

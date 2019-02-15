@@ -4,8 +4,6 @@ class Game
   attr_reader :trainer
 
   def welcome
-    puts "Welcome to the World of..."
-    sleep(2)
     animation2
     sleep(2)
     animation
@@ -32,6 +30,7 @@ class Game
       puts "3. Squirtle"
       starter = gets.chomp.to_i
       if starter == 1
+        puts ""
         puts "Charmander! Great Choice!"
         @trainer.add_pokemon_to_roster(Pokemon.all[3])
         sleep(1)
