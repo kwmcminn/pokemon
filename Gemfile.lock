@@ -13,6 +13,7 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     arel (7.1.4)
+    audite (0.4.0)
     coderay (1.1.1)
     concurrent-ruby (1.0.5)
     domain_name (0.5.20180417)
@@ -60,6 +61,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  audite
   pry
   require_all
   rest-client
@@ -68,4 +70,4 @@ DEPENDENCIES
   sqlite3
 
 BUNDLED WITH
-   1.17.1
+   1.17.3
